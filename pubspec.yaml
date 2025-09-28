@@ -21,6 +21,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_staggered_grid_view: ^0.7.0
   smooth_page_indicator: ^1.1.0
+  google_fonts: ^6.1.0
   
   # Animations & Transitions
   animations: ^2.0.11
@@ -28,7 +29,7 @@ dependencies:
   flutter_animate: ^4.5.0
   
   # Maps & Location
-  google_maps_flutter: ^2.6.0
+  google_maps_flutter: ^2.5.3
   geolocator: ^10.1.1
   geocoding: ^2.1.1
   
@@ -57,7 +58,7 @@ dependencies:
   # Utils
   intl: ^0.19.0
   permission_handler: ^11.3.1
-  package_info_plus: ^5.0.1
+  package_info_plus: ^4.2.0
   
   # Notifications
   flutter_local_notifications: ^17.1.2
