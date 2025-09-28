@@ -10,7 +10,7 @@ class AppTheme {
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
     fontFamily: GoogleFonts.inter().fontFamily,
-    
+
     // Color Scheme
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
@@ -18,7 +18,7 @@ class AppTheme {
       surface: Colors.white,
       onSurface: AppColors.textPrimary,
     ),
-    
+
     // App Bar Theme
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -34,7 +34,7 @@ class AppTheme {
         color: AppColors.textPrimary,
       ),
     ),
-    
+
     // Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -52,7 +52,7 @@ class AppTheme {
         ),
       ),
     ),
-    
+
     // Input Decoration Theme
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -79,7 +79,7 @@ class AppTheme {
         fontSize: 14,
       ),
     ),
-    
+
     // Card Theme
     cardTheme: CardTheme(
       elevation: 0,
@@ -89,7 +89,7 @@ class AppTheme {
       ),
       color: Colors.white,
     ),
-    
+
     // Bottom Navigation Bar Theme
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
@@ -106,7 +106,7 @@ class AppTheme {
         fontWeight: FontWeight.w400,
       ),
     ),
-    
+
     // Chip Theme
     chipTheme: ChipThemeData(
       backgroundColor: AppColors.surface,
@@ -121,7 +121,7 @@ class AppTheme {
         side: BorderSide.none,
       ),
     ),
-    
+
     // Text Theme
     textTheme: TextTheme(
       displayLarge: GoogleFonts.inter(
@@ -209,7 +209,6 @@ class AppTheme {
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: const Color(0xFF0F1419),
     fontFamily: GoogleFonts.inter().fontFamily,
-    
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.dark,

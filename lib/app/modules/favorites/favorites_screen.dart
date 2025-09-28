@@ -38,10 +38,14 @@ class FavoritesScreen extends StatelessWidget {
             final property = propertyController.favoriteProperties[index];
             return Padding(
               padding: EdgeInsets.only(
-                  bottom: index == propertyController.favoriteProperties.length - 1 ? 0 : 16),
+                  bottom:
+                      index == propertyController.favoriteProperties.length - 1
+                          ? 0
+                          : 16),
               child: PropertyCard(
                 property: property,
-                onTap: () => Get.to(() => PropertyDetailsScreen(property: property)),
+                onTap: () =>
+                    Get.to(() => PropertyDetailsScreen(property: property)),
               ),
             );
           },

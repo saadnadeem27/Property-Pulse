@@ -75,7 +75,7 @@ class PropertyCard extends StatelessWidget {
             ),
           ),
         ),
-        
+
         // Status Badge
         Positioned(
           top: 12,
@@ -96,7 +96,7 @@ class PropertyCard extends StatelessWidget {
             ),
           ),
         ),
-        
+
         // Favorite Button
         Positioned(
           top: 12,
@@ -112,11 +112,11 @@ class PropertyCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
-                  controller.isFavorite(property.id) 
-                      ? Icons.favorite 
+                  controller.isFavorite(property.id)
+                      ? Icons.favorite
                       : Icons.favorite_border,
-                  color: controller.isFavorite(property.id) 
-                      ? AppColors.error 
+                  color: controller.isFavorite(property.id)
+                      ? AppColors.error
                       : AppColors.textSecondary,
                   size: 18,
                 ),
@@ -124,7 +124,7 @@ class PropertyCard extends StatelessWidget {
             ),
           ),
         ),
-        
+
         // Verified Badge
         if (property.isVerified)
           Positioned(
@@ -178,9 +178,9 @@ class PropertyCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          
+
           const SizedBox(height: 4),
-          
+
           // Location
           Row(
             children: [
@@ -203,9 +203,9 @@ class PropertyCard extends StatelessWidget {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           // Property Details
           Row(
             children: [
@@ -225,9 +225,9 @@ class PropertyCard extends StatelessWidget {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Price and Rating
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,7 +237,8 @@ class PropertyCard extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '${property.currency} ${_formatPrice(property.price)}',
+                      text:
+                          '${property.currency} ${_formatPrice(property.price)}',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -256,7 +257,7 @@ class PropertyCard extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               // Rating
               Row(
                 children: [

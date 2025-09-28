@@ -91,14 +91,16 @@ class _MainNavigationState extends State<MainNavigation> {
           final index = entry.key;
           final item = entry.value;
           final isActive = index == _currentIndex;
-          
+
           return GestureDetector(
             onTap: () => _onTabTapped(index),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: isActive ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
+                color: isActive
+                    ? AppColors.primary.withOpacity(0.1)
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
@@ -109,19 +111,21 @@ class _MainNavigationState extends State<MainNavigation> {
                     child: Icon(
                       isActive ? item.activeIcon : item.icon,
                       key: ValueKey(isActive),
-                      color: isActive ? AppColors.primary : AppColors.textSecondary,
+                      color: isActive
+                          ? AppColors.primary
+                          : AppColors.textSecondary,
                       size: 24,
                     ),
                   ).animate(target: isActive ? 1 : 0).scale(duration: 200.ms),
-                  
                   const SizedBox(height: 4),
-                  
                   Text(
                     item.label,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
-                      color: isActive ? AppColors.primary : AppColors.textSecondary,
+                      color: isActive
+                          ? AppColors.primary
+                          : AppColors.textSecondary,
                     ),
                   ),
                 ],
@@ -137,7 +141,7 @@ class _MainNavigationState extends State<MainNavigation> {
     setState(() {
       _currentIndex = index;
     });
-    
+
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),

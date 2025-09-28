@@ -20,18 +20,19 @@ class ProfileScreen extends StatelessWidget {
             children: [
               // Profile Header
               _buildProfileHeader(authController),
-              
+
               const SizedBox(height: 32),
-              
+
               // Menu Items
               _buildMenuItem(Icons.person_outline, 'Edit Profile', () {}),
               _buildMenuItem(Icons.notifications_none, 'Notifications', () {}),
-              _buildMenuItem(Icons.security_outlined, 'Privacy & Security', () {}),
+              _buildMenuItem(
+                  Icons.security_outlined, 'Privacy & Security', () {}),
               _buildMenuItem(Icons.help_outline, 'Help & Support', () {}),
               _buildMenuItem(Icons.info_outline, 'About', () {}),
-              
+
               const SizedBox(height: 32),
-              
+
               // Logout Button
               _buildLogoutButton(authController),
             ],
@@ -43,52 +44,54 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildProfileHeader(AuthController authController) {
     return Obx(() => Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowLight,
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundColor: AppColors.primary,
-            child: Text(
-              (authController.user?.displayName ?? 'G').substring(0, 1).toUpperCase(),
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowLight,
+                blurRadius: 10,
+                offset: const Offset(0, 2),
               ),
-            ),
+            ],
           ),
-          const SizedBox(height: 16),
-          Text(
-            authController.user?.displayName ?? 'Guest User',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
-            ),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundColor: AppColors.primary,
+                child: Text(
+                  (authController.user?.displayName ?? 'G')
+                      .substring(0, 1)
+                      .toUpperCase(),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                authController.user?.displayName ?? 'Guest User',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                authController.user?.email ?? 'guest@example.com',
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            authController.user?.email ?? 'guest@example.com',
-            style: const TextStyle(
-              fontSize: 14,
-              color: AppColors.textSecondary,
-            ),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget _buildMenuItem(IconData icon, String title, VoidCallback onTap) {

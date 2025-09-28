@@ -33,19 +33,19 @@ class HomeScreen extends StatelessWidget {
             slivers: [
               // App Bar
               _buildSliverAppBar(authController, locationController),
-              
+
               // Search Bar
               _buildSearchSection(),
-              
+
               // Categories
               _buildCategoriesSection(),
-              
+
               // Featured Properties
               _buildFeaturedSection(propertyController),
-              
+
               // Nearby Properties
               _buildNearbySection(propertyController),
-              
+
               // All Properties
               _buildAllPropertiesSection(propertyController),
             ],
@@ -55,7 +55,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSliverAppBar(AuthController authController, LocationController locationController) {
+  Widget _buildSliverAppBar(
+      AuthController authController, LocationController locationController) {
     return SliverToBoxAdapter(
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -78,17 +79,21 @@ class HomeScreen extends StatelessWidget {
                       ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.3),
                       const SizedBox(height: 4),
                       Obx(() => Text(
-                        authController.user?.displayName ?? 'Guest User',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textPrimary,
-                        ),
-                      )).animate().fadeIn(delay: 200.ms).slideX(begin: -0.3),
+                                authController.user?.displayName ??
+                                    'Guest User',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ))
+                          .animate()
+                          .fadeIn(delay: 200.ms)
+                          .slideX(begin: -0.3),
                     ],
                   ),
                 ),
-                
+
                 // Notification Button
                 Container(
                   decoration: BoxDecoration(
@@ -114,42 +119,43 @@ class HomeScreen extends StatelessWidget {
                 ).animate().fadeIn(delay: 300.ms).scale(delay: 300.ms),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Location
             Obx(() => Row(
-              children: [
-                const Icon(
-                  Icons.location_on,
-                  color: AppColors.primary,
-                  size: 16,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    locationController.currentAddress.isEmpty 
-                        ? 'Getting location...' 
-                        : locationController.currentAddress,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: AppColors.textSecondary,
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      color: AppColors.primary,
+                      size: 16,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                if (locationController.currentAddress.isEmpty)
-                  const SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        locationController.currentAddress.isEmpty
+                            ? 'Getting location...'
+                            : locationController.currentAddress,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: AppColors.textSecondary,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-              ],
-            )).animate().fadeIn(delay: 400.ms).slideX(begin: -0.3),
+                    if (locationController.currentAddress.isEmpty)
+                      const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(AppColors.primary),
+                        ),
+                      ),
+                  ],
+                )).animate().fadeIn(delay: 400.ms).slideX(begin: -0.3),
           ],
         ),
       ),
@@ -232,7 +238,8 @@ class HomeScreen extends StatelessWidget {
           itemCount: categories.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: EdgeInsets.only(right: index == categories.length - 1 ? 0 : 12),
+              padding: EdgeInsets.only(
+                  right: index == categories.length - 1 ? 0 : 12),
               child: CategoryChip(
                 category: categories[index],
                 onTap: () {
@@ -275,15 +282,14 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ).animate().fadeIn(delay: 800.ms).slideX(begin: -0.3),
-          
-          Container(
+          SizedBox(
             height: 280,
             child: Obx(() {
               final featuredProperties = propertyController.featuredProperties;
               if (featuredProperties.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
-              
+
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -291,15 +297,20 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final property = featuredProperties[index];
                   return Padding(
-                    padding: EdgeInsets.only(right: index == featuredProperties.length - 1 ? 0 : 16),
+                    padding: EdgeInsets.only(
+                        right: index == featuredProperties.length - 1 ? 0 : 16),
                     child: SizedBox(
                       width: 260,
                       child: PropertyCard(
                         property: property,
-                        onTap: () => Get.to(() => PropertyDetailsScreen(property: property)),
+                        onTap: () => Get.to(
+                            () => PropertyDetailsScreen(property: property)),
                       ),
                     ),
-                  ).animate(delay: (900 + index * 100).ms).fadeIn().slideX(begin: 0.3);
+                  )
+                      .animate(delay: (900 + index * 100).ms)
+                      .fadeIn()
+                      .slideX(begin: 0.3);
                 },
               );
             }),
@@ -339,7 +350,6 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ).animate().fadeIn(delay: 1200.ms).slideX(begin: -0.3),
-          
           SizedBox(
             height: 200,
             child: Obx(() {
@@ -347,7 +357,7 @@ class HomeScreen extends StatelessWidget {
               if (nearbyProperties.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
-              
+
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -355,9 +365,13 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final property = nearbyProperties[index];
                   return Padding(
-                    padding: EdgeInsets.only(right: index == nearbyProperties.length - 1 ? 0 : 16),
+                    padding: EdgeInsets.only(
+                        right: index == nearbyProperties.length - 1 ? 0 : 16),
                     child: _buildNearbyCard(property),
-                  ).animate(delay: (1300 + index * 100).ms).fadeIn().slideX(begin: 0.3);
+                  )
+                      .animate(delay: (1300 + index * 100).ms)
+                      .fadeIn()
+                      .slideX(begin: 0.3);
                 },
               );
             }),
@@ -405,7 +419,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Content
             Padding(
               padding: const EdgeInsets.all(12),
@@ -455,15 +469,13 @@ class HomeScreen extends StatelessWidget {
                 color: AppColors.textPrimary,
               ),
             ).animate().fadeIn(delay: 1600.ms).slideX(begin: -0.3),
-            
             const SizedBox(height: 16),
-            
             Obx(() {
               final properties = propertyController.properties;
               if (properties.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
-              
+
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -471,12 +483,17 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final property = properties[index];
                   return Padding(
-                    padding: EdgeInsets.only(bottom: index == properties.length - 1 ? 0 : 16),
+                    padding: EdgeInsets.only(
+                        bottom: index == properties.length - 1 ? 0 : 16),
                     child: PropertyCard(
                       property: property,
-                      onTap: () => Get.to(() => PropertyDetailsScreen(property: property)),
+                      onTap: () => Get.to(
+                          () => PropertyDetailsScreen(property: property)),
                     ),
-                  ).animate(delay: (1700 + index * 100).ms).fadeIn().slideY(begin: 0.3);
+                  )
+                      .animate(delay: (1700 + index * 100).ms)
+                      .fadeIn()
+                      .slideY(begin: 0.3);
                 },
               );
             }),

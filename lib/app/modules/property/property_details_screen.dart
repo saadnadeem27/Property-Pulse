@@ -78,11 +78,11 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
             builder: (controller) => IconButton(
               onPressed: () => controller.toggleFavorite(widget.property.id),
               icon: Icon(
-                controller.isFavorite(widget.property.id) 
-                    ? Icons.favorite 
+                controller.isFavorite(widget.property.id)
+                    ? Icons.favorite
                     : Icons.favorite_border,
-                color: controller.isFavorite(widget.property.id) 
-                    ? AppColors.error 
+                color: controller.isFavorite(widget.property.id)
+                    ? AppColors.error
                     : AppColors.textPrimary,
               ),
             ),
@@ -152,9 +152,9 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
               ),
             ),
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Title
           Text(
             widget.property.title,
@@ -164,9 +164,9 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
               color: AppColors.textPrimary,
             ),
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           // Location
           Row(
             children: [
@@ -183,15 +183,16 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Price
           RichText(
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: '${widget.property.currency} ${_formatPrice(widget.property.price)}',
+                  text:
+                      '${widget.property.currency} ${_formatPrice(widget.property.price)}',
                   style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -210,15 +211,18 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
               ],
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Property Details
           Row(
             children: [
-              _buildDetailItem(Icons.bed, '${widget.property.details.bedrooms}', 'Beds'),
-              _buildDetailItem(Icons.bathtub, '${widget.property.details.bathrooms}', 'Baths'),
-              _buildDetailItem(Icons.square_foot, '${widget.property.details.area.toInt()}', 'Sqft'),
+              _buildDetailItem(
+                  Icons.bed, '${widget.property.details.bedrooms}', 'Beds'),
+              _buildDetailItem(Icons.bathtub,
+                  '${widget.property.details.bathrooms}', 'Baths'),
+              _buildDetailItem(Icons.square_foot,
+                  '${widget.property.details.area.toInt()}', 'Sqft'),
             ],
           ),
         ],
@@ -308,7 +312,8 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
             runSpacing: 8,
             children: widget.property.amenities.map((amenity) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
@@ -379,7 +384,8 @@ class _PropertyDetailsScreenState extends State<PropertyDetailsScreen> {
                   ),
                 Row(
                   children: [
-                    const Icon(Icons.star, color: AppColors.ratingGold, size: 14),
+                    const Icon(Icons.star,
+                        color: AppColors.ratingGold, size: 14),
                     const SizedBox(width: 4),
                     Text(
                       '${widget.property.agent.rating} (${widget.property.agent.totalSales} sales)',

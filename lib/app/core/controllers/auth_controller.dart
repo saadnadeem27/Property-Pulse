@@ -7,28 +7,28 @@ enum AuthStatus { initial, authenticated, unauthenticated, loading }
 
 class AuthController extends GetxController {
   static AuthController get instance => Get.find();
-  
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  
+
   // Observables
   final Rx<User?> _user = Rx<User?>(null);
   final Rx<AuthStatus> _authStatus = AuthStatus.initial.obs;
   final RxBool _isLoading = false.obs;
-  
+
   // Getters
   User? get user => _user.value;
   AuthStatus get authStatus => _authStatus.value;
   bool get isLoading => _isLoading.value;
   bool get isAuthenticated => _authStatus.value == AuthStatus.authenticated;
-  
+
   @override
   void onInit() {
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
     ever(_user, _setInitialScreen);
   }
-  
+
   void _setInitialScreen(User? user) {
     if (user == null) {
       _authStatus.value = AuthStatus.unauthenticated;
@@ -36,7 +36,7 @@ class AuthController extends GetxController {
       _authStatus.value = AuthStatus.authenticated;
     }
   }
-  
+
   // Email & Password Sign In
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
@@ -49,16 +49,15 @@ class AuthController extends GetxController {
       _isLoading.value = false;
     }
   }
-  
+
   // Email & Password Sign Up
-  Future<void> signUpWithEmailAndPassword(String email, String password, String name) async {
+  Future<void> signUpWithEmailAndPassword(
+      String email, String password, String name) async {
     try {
       _isLoading.value = true;
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
-        email: email, 
-        password: password
-      );
-      
+          email: email, password: password);
+
       // Update display name
       await credential.user?.updateDisplayName(name);
       await _saveUserSession();
@@ -68,20 +67,21 @@ class AuthController extends GetxController {
       _isLoading.value = false;
     }
   }
-  
+
   // Google Sign In
   Future<void> signInWithGoogle() async {
     try {
       _isLoading.value = true;
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      
+
       if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
         final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
-        
+
         await _auth.signInWithCredential(credential);
         await _saveUserSession();
       }
@@ -91,7 +91,7 @@ class AuthController extends GetxController {
       _isLoading.value = false;
     }
   }
-  
+
   // Sign Out
   Future<void> signOut() async {
     try {
@@ -105,7 +105,7 @@ class AuthController extends GetxController {
       _isLoading.value = false;
     }
   }
-  
+
   // Reset Password
   Future<void> resetPassword(String email) async {
     try {
@@ -118,7 +118,7 @@ class AuthController extends GetxController {
       _isLoading.value = false;
     }
   }
-  
+
   // Save user session
   Future<void> _saveUserSession() async {
     final prefs = await SharedPreferences.getInstance();
@@ -129,7 +129,7 @@ class AuthController extends GetxController {
       await prefs.setString('userName', user!.displayName ?? '');
     }
   }
-  
+
   // Clear user session
   Future<void> _clearUserSession() async {
     final prefs = await SharedPreferences.getInstance();

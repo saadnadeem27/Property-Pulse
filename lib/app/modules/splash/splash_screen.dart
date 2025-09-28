@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> 
+class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -54,17 +54,19 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 3));
-    
+
     final authController = Get.find<AuthController>();
-    
+
     if (authController.isAuthenticated) {
-      Get.offAll(() => const MainNavigation(),
+      Get.offAll(
+        () => const MainNavigation(),
         transition: Transition.fadeIn,
         duration: const Duration(milliseconds: 500),
       );
     } else {
       // Check if user has seen onboarding
-      Get.offAll(() => const OnboardingScreen(),
+      Get.offAll(
+        () => const OnboardingScreen(),
         transition: Transition.fadeIn,
         duration: const Duration(milliseconds: 500),
       );
@@ -123,9 +125,9 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // App Name
               SlideTransition(
                 position: _slideAnimation,
@@ -142,9 +144,9 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 8),
-              
+
               // App Tagline
               FadeTransition(
                 opacity: _fadeAnimation,
@@ -157,9 +159,9 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 50),
-              
+
               // Loading Animation
               FadeTransition(
                 opacity: _fadeAnimation,

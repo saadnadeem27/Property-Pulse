@@ -43,22 +43,22 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                
+
                 // Header
                 _buildHeader(),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Email Field
                 _buildEmailField(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Reset Button
                 _buildResetButton(),
-                
+
                 const Spacer(),
-                
+
                 // Back to Login
                 _buildBackToLogin(),
               ],
@@ -86,9 +86,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             color: AppColors.primary,
           ),
         ).animate().scale(delay: 100.ms),
-        
         const SizedBox(height: 24),
-        
         const Text(
           'Forgot Password?',
           style: TextStyle(
@@ -97,9 +95,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             color: AppColors.textPrimary,
           ),
         ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.3),
-        
         const SizedBox(height: 8),
-        
         const Text(
           'Don\'t worry! Enter your email address and we\'ll send you a password reset link.',
           style: TextStyle(
@@ -154,36 +150,36 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   Widget _buildResetButton() {
     return Obx(() => SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton(
-        onPressed: _authController.isLoading ? null : _handleReset,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: _authController.isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            : const Text(
-                'Send Reset Link',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+          width: double.infinity,
+          height: 56,
+          child: ElevatedButton(
+            onPressed: _authController.isLoading ? null : _handleReset,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-      ),
-    )).animate().fadeIn(delay: 500.ms).scale(delay: 500.ms);
+            ),
+            child: _authController.isLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : const Text(
+                    'Send Reset Link',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+          ),
+        )).animate().fadeIn(delay: 500.ms).scale(delay: 500.ms);
   }
 
   Widget _buildBackToLogin() {

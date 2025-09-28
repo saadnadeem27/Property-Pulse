@@ -18,7 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final AuthController _authController = Get.find<AuthController>();
-  
+
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _agreeToTerms = false;
@@ -54,49 +54,49 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 // Header
                 _buildHeader(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Name Field
                 _buildNameField(),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Email Field
                 _buildEmailField(),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Password Field
                 _buildPasswordField(),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Confirm Password Field
                 _buildConfirmPasswordField(),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Terms Agreement
                 _buildTermsAgreement(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Sign Up Button
                 _buildSignUpButton(),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Divider
                 _buildDivider(),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Social Login Buttons
                 _buildSocialLoginButtons(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Sign In Link
                 _buildSignInLink(),
               ],
@@ -119,9 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
             color: AppColors.textPrimary,
           ),
         ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.3),
-        
         const SizedBox(height: 8),
-        
         const Text(
           'Join us and find your perfect home',
           style: TextStyle(
@@ -288,7 +286,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 });
               },
               icon: Icon(
-                _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                _obscureConfirmPassword
+                    ? Icons.visibility_off
+                    : Icons.visibility,
               ),
             ),
             filled: true,
@@ -340,36 +340,38 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Widget _buildSignUpButton() {
     return Obx(() => SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton(
-        onPressed: _authController.isLoading || !_agreeToTerms ? null : _handleSignUp,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: _authController.isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            : const Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+          width: double.infinity,
+          height: 56,
+          child: ElevatedButton(
+            onPressed: _authController.isLoading || !_agreeToTerms
+                ? null
+                : _handleSignUp,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-      ),
-    )).animate().fadeIn(delay: 800.ms).scale(delay: 800.ms);
+            ),
+            child: _authController.isLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : const Text(
+                    'Create Account',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+          ),
+        )).animate().fadeIn(delay: 800.ms).scale(delay: 800.ms);
   }
 
   Widget _buildDivider() {

@@ -19,19 +19,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<OnboardingItem> _onboardingItems = [
     OnboardingItem(
       title: 'Find Your Perfect Home',
-      description: 'Discover thousands of properties with advanced search filters and real-time updates.',
+      description:
+          'Discover thousands of properties with advanced search filters and real-time updates.',
       icon: Icons.home_rounded,
       color: AppColors.primary,
     ),
     OnboardingItem(
       title: 'Virtual Tours & AR',
-      description: 'Experience properties like never before with 360° virtual tours and augmented reality.',
+      description:
+          'Experience properties like never before with 360° virtual tours and augmented reality.',
       icon: Icons.view_in_ar_rounded,
       color: AppColors.secondary,
     ),
     OnboardingItem(
       title: 'Connect with Agents',
-      description: 'Chat directly with verified agents and schedule visits with just a few taps.',
+      description:
+          'Chat directly with verified agents and schedule visits with just a few taps.',
       icon: Icons.people_rounded,
       color: AppColors.propertyRent,
     ),
@@ -59,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ).animate().fadeIn(delay: 300.ms),
             ),
-            
+
             // PageView
             Expanded(
               child: PageView.builder(
@@ -75,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
             ),
-            
+
             // Bottom Section
             Padding(
               padding: const EdgeInsets.all(24),
@@ -94,9 +97,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       spacing: 8,
                     ),
                   ).animate().fadeIn(delay: 500.ms),
-                  
+
                   const SizedBox(height: 32),
-                  
+
                   // Next/Get Started Button
                   SizedBox(
                     width: double.infinity,
@@ -174,9 +177,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               color: Colors.white,
             ),
           ).animate().scale(delay: (index * 200).ms, duration: 600.ms),
-          
+
           const SizedBox(height: 48),
-          
+
           // Title
           Text(
             item.title,
@@ -188,9 +191,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               height: 1.2,
             ),
           ).animate().fadeIn(delay: (index * 200 + 300).ms).slideY(begin: 0.3),
-          
+
           const SizedBox(height: 16),
-          
+
           // Description
           Text(
             item.description,

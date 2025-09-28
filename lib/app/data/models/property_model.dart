@@ -54,7 +54,8 @@ class Property {
       details: PropertyDetails.fromJson(json['details']),
       agent: Agent.fromJson(json['agent']),
       createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+      updatedAt:
+          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       rating: json['rating'].toDouble(),
       reviewCount: json['reviewCount'],
       isFeatured: json['isFeatured'],
@@ -86,7 +87,16 @@ class Property {
   }
 }
 
-enum PropertyType { house, apartment, villa, townhouse, studio, office, retail, warehouse }
+enum PropertyType {
+  house,
+  apartment,
+  villa,
+  townhouse,
+  studio,
+  office,
+  retail,
+  warehouse
+}
 
 enum PropertyStatus { rent, buy, lease, sold, rented }
 

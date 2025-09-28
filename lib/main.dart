@@ -8,10 +8,10 @@ import 'app/core/bindings/initial_bindings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize Hive
   await Hive.initFlutter();
-  
+
   // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -21,7 +21,7 @@ void main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
-  
+
   runApp(const PropertyPulseApp());
 }
 
@@ -43,5 +43,3 @@ class PropertyPulseApp extends StatelessWidget {
     );
   }
 }
-
-

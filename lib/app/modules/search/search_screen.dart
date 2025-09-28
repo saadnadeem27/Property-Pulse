@@ -32,18 +32,18 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           // Search Bar
           _buildSearchBar(),
-          
+
           // Search Results
           Expanded(
             child: Obx(() {
               if (_propertyController.searchQuery.isEmpty) {
                 return _buildEmptyState();
               }
-              
+
               if (_propertyController.searchResults.isEmpty) {
                 return _buildNoResultsState();
               }
-              
+
               return _buildSearchResults();
             }),
           ),
@@ -148,9 +148,9 @@ class _SearchScreenState extends State<SearchScreen> {
               color: AppColors.textSecondary,
             ),
           ).animate().scale(delay: 300.ms),
-          
+
           const SizedBox(height: 24),
-          
+
           const Text(
             'Search for Properties',
             style: TextStyle(
@@ -159,9 +159,9 @@ class _SearchScreenState extends State<SearchScreen> {
               color: AppColors.textPrimary,
             ),
           ).animate().fadeIn(delay: 500.ms),
-          
+
           const SizedBox(height: 8),
-          
+
           const Text(
             'Enter location, property type, or any\nkeyword to find your perfect home',
             textAlign: TextAlign.center,
@@ -171,9 +171,9 @@ class _SearchScreenState extends State<SearchScreen> {
               height: 1.5,
             ),
           ).animate().fadeIn(delay: 600.ms),
-          
+
           const SizedBox(height: 32),
-          
+
           // Popular Searches
           _buildPopularSearches(),
         ],
@@ -200,9 +200,7 @@ class _SearchScreenState extends State<SearchScreen> {
             color: AppColors.textPrimary,
           ),
         ).animate().fadeIn(delay: 700.ms),
-        
         const SizedBox(height: 16),
-        
         Wrap(
           spacing: 12,
           runSpacing: 12,
@@ -214,7 +212,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 setState(() {});
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -254,9 +253,7 @@ class _SearchScreenState extends State<SearchScreen> {
               color: AppColors.textSecondary,
             ),
           ).animate().scale(delay: 300.ms),
-          
           const SizedBox(height: 24),
-          
           const Text(
             'No Results Found',
             style: TextStyle(
@@ -265,9 +262,7 @@ class _SearchScreenState extends State<SearchScreen> {
               color: AppColors.textPrimary,
             ),
           ).animate().fadeIn(delay: 500.ms),
-          
           const SizedBox(height: 8),
-          
           Text(
             'We couldn\'t find any properties matching\n"${_propertyController.searchQuery}"',
             textAlign: TextAlign.center,
@@ -277,9 +272,7 @@ class _SearchScreenState extends State<SearchScreen> {
               height: 1.5,
             ),
           ).animate().fadeIn(delay: 600.ms),
-          
           const SizedBox(height: 32),
-          
           ElevatedButton(
             onPressed: () {
               _searchController.clear();
@@ -307,10 +300,14 @@ class _SearchScreenState extends State<SearchScreen> {
       itemBuilder: (context, index) {
         final property = _propertyController.searchResults[index];
         return Padding(
-          padding: EdgeInsets.only(bottom: index == _propertyController.searchResults.length - 1 ? 0 : 16),
+          padding: EdgeInsets.only(
+              bottom: index == _propertyController.searchResults.length - 1
+                  ? 0
+                  : 16),
           child: PropertyCard(
             property: property,
-            onTap: () => Get.to(() => PropertyDetailsScreen(property: property)),
+            onTap: () =>
+                Get.to(() => PropertyDetailsScreen(property: property)),
           ),
         ).animate(delay: (index * 100).ms).fadeIn().slideY(begin: 0.3);
       },

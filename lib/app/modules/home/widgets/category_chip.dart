@@ -29,7 +29,9 @@ class _CategoryChipState extends State<CategoryChip> {
           color: widget.category.isSelected ? AppColors.primary : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: widget.category.isSelected ? AppColors.primary : AppColors.border,
+            color: widget.category.isSelected
+                ? AppColors.primary
+                : AppColors.border,
           ),
           boxShadow: widget.category.isSelected
               ? [
@@ -53,8 +55,8 @@ class _CategoryChipState extends State<CategoryChip> {
             Icon(
               widget.category.icon,
               size: 16,
-              color: widget.category.isSelected 
-                  ? Colors.white 
+              color: widget.category.isSelected
+                  ? Colors.white
                   : AppColors.textSecondary,
             ),
             const SizedBox(width: 6),
@@ -63,8 +65,8 @@ class _CategoryChipState extends State<CategoryChip> {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: widget.category.isSelected 
-                    ? Colors.white 
+                color: widget.category.isSelected
+                    ? Colors.white
                     : AppColors.textSecondary,
               ),
             ),

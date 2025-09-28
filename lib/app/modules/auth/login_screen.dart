@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final AuthController _authController = Get.find<AuthController>();
-  
+
   bool _obscurePassword = true;
   bool _rememberMe = false;
 
@@ -43,42 +43,42 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                
+
                 // Header
                 _buildHeader(),
-                
+
                 const SizedBox(height: 48),
-                
+
                 // Email Field
                 _buildEmailField(),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Password Field
                 _buildPasswordField(),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Remember Me & Forgot Password
                 _buildRememberMeRow(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Login Button
                 _buildLoginButton(),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Divider
                 _buildDivider(),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Social Login Buttons
                 _buildSocialLoginButtons(),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Sign Up Link
                 _buildSignUpLink(),
               ],
@@ -101,9 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
             color: AppColors.textPrimary,
           ),
         ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.3),
-        
         const SizedBox(height: 8),
-        
         const Text(
           'Sign in to your account to continue',
           style: TextStyle(
@@ -248,36 +246,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLoginButton() {
     return Obx(() => SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton(
-        onPressed: _authController.isLoading ? null : _handleLogin,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: _authController.isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            : const Text(
-                'Sign In',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+          width: double.infinity,
+          height: 56,
+          child: ElevatedButton(
+            onPressed: _authController.isLoading ? null : _handleLogin,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-      ),
-    )).animate().fadeIn(delay: 600.ms).scale(delay: 600.ms);
+            ),
+            child: _authController.isLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : const Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+          ),
+        )).animate().fadeIn(delay: 600.ms).scale(delay: 600.ms);
   }
 
   Widget _buildDivider() {
@@ -329,9 +327,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ).animate().fadeIn(delay: 800.ms).slideY(begin: 0.3),
-        
+
         const SizedBox(height: 16),
-        
+
         // Apple Sign In (iOS only)
         if (GetPlatform.isIOS)
           SizedBox(
