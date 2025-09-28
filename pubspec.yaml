@@ -1,0 +1,119 @@
+name: property_pulse
+description: "Property Pulse - Premium Real Estate App"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  get: ^4.6.6
+  
+  # UI Components & Icons
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  flutter_staggered_grid_view: ^0.7.0
+  smooth_page_indicator: ^1.1.0
+  
+  # Animations & Transitions
+  animations: ^2.0.11
+  lottie: ^3.1.2
+  flutter_animate: ^4.5.0
+  
+  # Maps & Location
+  google_maps_flutter: ^2.6.0
+  geolocator: ^10.1.1
+  geocoding: ^2.1.1
+  
+  # Authentication & Social Login
+  firebase_auth: ^4.19.4
+  google_sign_in: ^6.2.1
+  sign_in_with_apple: ^6.1.0
+  
+  # Storage & Database
+  shared_preferences: ^2.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  
+  # Networking & API
+  dio: ^5.4.3+1
+  connectivity_plus: ^5.0.2
+  
+  # Image & Media
+  image_picker: ^1.0.7
+  photo_view: ^0.14.0
+  video_player: ^2.8.6
+  
+  # Communication
+  url_launcher: ^6.2.5
+  
+  # Utils
+  intl: ^0.19.0
+  permission_handler: ^11.3.1
+  package_info_plus: ^5.0.1
+  
+  # Notifications
+  flutter_local_notifications: ^17.1.2
+  
+  # WebView
+  webview_flutter: ^4.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^5.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
