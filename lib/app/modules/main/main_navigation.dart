@@ -74,7 +74,7 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget _buildBottomNavigationBar() {
     return Container(
       height: 90,
-      padding: const EdgeInsets.only(top: 8, bottom: 24),
+      padding: const EdgeInsets.only(top: 5, bottom: 12),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

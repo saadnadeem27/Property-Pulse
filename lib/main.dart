@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'app/core/theme/app_theme.dart';
-import 'app/modules/splash/splash_screen.dart';
+
 import 'app/core/bindings/initial_bindings.dart';
+import 'app/core/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,8 @@ class PropertyPulseApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
       initialBinding: InitialBindings(),
-      home: const SplashScreen(),
+      initialRoute: AppPages.initial,
+      getPages: AppPages.routes,
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     );

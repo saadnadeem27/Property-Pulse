@@ -1,23 +1,27 @@
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthStatus { initial, authenticated, unauthenticated, loading }
 
+// Dummy User class for frontend demo
+class DummyUser {
+  final String uid;
+  final String? email;
+  final String? displayName;
+
+  DummyUser({required this.uid, this.email, this.displayName});
+}
+
 class AuthController extends GetxController {
   static AuthController get instance => Get.find();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-
   // Observables
-  final Rx<User?> _user = Rx<User?>(null);
+  final Rx<DummyUser?> _user = Rx<DummyUser?>(null);
   final Rx<AuthStatus> _authStatus = AuthStatus.initial.obs;
   final RxBool _isLoading = false.obs;
 
   // Getters
-  User? get user => _user.value;
+  DummyUser? get user => _user.value;
   AuthStatus get authStatus => _authStatus.value;
   bool get isLoading => _isLoading.value;
   bool get isAuthenticated => _authStatus.value == AuthStatus.authenticated;
@@ -25,11 +29,10 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _user.bindStream(_auth.authStateChanges());
     ever(_user, _setInitialScreen);
   }
 
-  void _setInitialScreen(User? user) {
+  void _setInitialScreen(DummyUser? user) {
     if (user == null) {
       _authStatus.value = AuthStatus.unauthenticated;
     } else {
@@ -37,54 +40,78 @@ class AuthController extends GetxController {
     }
   }
 
-  // Email & Password Sign In
+  // Dummy Email & Password Sign In - No validation, direct login
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
       _isLoading.value = true;
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      
+      // Simulate loading delay
+      await Future.delayed(const Duration(seconds: 1));
+      
+      // Create dummy user
+      _user.value = DummyUser(
+        uid: 'dummy_user_123',
+        email: email.isEmpty ? 'demo@propertypulse.com' : email,
+        displayName: 'Demo User',
+      );
+      
       await _saveUserSession();
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar('Error', e.message ?? 'An error occurred');
+      Get.snackbar('Success', 'Welcome to Property Pulse!');
+      
+      // Navigate to main dashboard
+      Get.offAllNamed('/main');
+    } catch (e) {
+      Get.snackbar('Error', 'Something went wrong');
     } finally {
       _isLoading.value = false;
     }
   }
 
-  // Email & Password Sign Up
+  // Dummy Email & Password Sign Up
   Future<void> signUpWithEmailAndPassword(
       String email, String password, String name) async {
     try {
       _isLoading.value = true;
-      UserCredential credential = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-
-      // Update display name
-      await credential.user?.updateDisplayName(name);
+      
+      // Simulate loading delay
+      await Future.delayed(const Duration(seconds: 1));
+      
+      // Create dummy user
+      _user.value = DummyUser(
+        uid: 'dummy_user_123',
+        email: email.isEmpty ? 'demo@propertypulse.com' : email,
+        displayName: name.isEmpty ? 'Demo User' : name,
+      );
+      
       await _saveUserSession();
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar('Error', e.message ?? 'An error occurred');
+      Get.snackbar('Success', 'Account created successfully!');
+      
+      // Navigate to main dashboard
+      Get.offAllNamed('/main');
+    } catch (e) {
+      Get.snackbar('Error', 'Something went wrong');
     } finally {
       _isLoading.value = false;
     }
   }
 
-  // Google Sign In
+  // Dummy Google Sign In
   Future<void> signInWithGoogle() async {
     try {
       _isLoading.value = true;
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
-      if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth =
-            await googleUser.authentication;
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
-
-        await _auth.signInWithCredential(credential);
-        await _saveUserSession();
-      }
+      
+      // Simulate loading delay
+      await Future.delayed(const Duration(seconds: 1));
+      
+      // Create dummy Google user
+      _user.value = DummyUser(
+        uid: 'dummy_google_user_123',
+        email: 'demo.google@propertypulse.com',
+        displayName: 'Google Demo User',
+      );
+      
+      await _saveUserSession();
+      Get.snackbar('Success', 'Signed in with Google!');
     } catch (e) {
       Get.snackbar('Error', 'Failed to sign in with Google');
     } finally {
@@ -96,9 +123,9 @@ class AuthController extends GetxController {
   Future<void> signOut() async {
     try {
       _isLoading.value = true;
-      await _auth.signOut();
-      await _googleSignIn.signOut();
+      _user.value = null;
       await _clearUserSession();
+      Get.snackbar('Success', 'Signed out successfully');
     } catch (e) {
       Get.snackbar('Error', 'Failed to sign out');
     } finally {
@@ -110,10 +137,13 @@ class AuthController extends GetxController {
   Future<void> resetPassword(String email) async {
     try {
       _isLoading.value = true;
-      await _auth.sendPasswordResetEmail(email: email);
-      Get.snackbar('Success', 'Password reset email sent');
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar('Error', e.message ?? 'An error occurred');
+      
+      // Simulate delay
+      await Future.delayed(const Duration(seconds: 1));
+      
+      Get.snackbar('Success', 'Password reset email sent (Demo)');
+    } catch (e) {
+      Get.snackbar('Error', 'Something went wrong');
     } finally {
       _isLoading.value = false;
     }

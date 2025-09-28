@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            hintText: 'Enter your email address',
+            hintText: 'Enter your email address (optional for demo)',
             prefixIcon: const Icon(Icons.email_outlined),
             filled: true,
             fillColor: AppColors.surface,
@@ -139,15 +139,15 @@ class _LoginScreenState extends State<LoginScreen> {
               borderSide: BorderSide.none,
             ),
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your email';
-            }
-            if (!GetUtils.isEmail(value)) {
-              return 'Please enter a valid email';
-            }
-            return null;
-          },
+          // validator: (value) {
+          //   if (value == null || value.isEmpty) {
+          //     return 'Please enter your email';
+          //   }
+          //   if (!GetUtils.isEmail(value)) {
+          //     return 'Please enter a valid email';
+          //   }
+          //   return null;
+          // },
         ),
       ],
     ).animate().fadeIn(delay: 300.ms).slideY(begin: 0.3);
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: _passwordController,
           obscureText: _obscurePassword,
           decoration: InputDecoration(
-            hintText: 'Enter your password',
+            hintText: 'Enter your password (optional for demo)',
             prefixIcon: const Icon(Icons.lock_outline),
             suffixIcon: IconButton(
               onPressed: () {
@@ -189,15 +189,15 @@ class _LoginScreenState extends State<LoginScreen> {
               borderSide: BorderSide.none,
             ),
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your password';
-            }
-            if (value.length < 6) {
-              return 'Password must be at least 6 characters';
-            }
-            return null;
-          },
+          // validator: (value) {
+          //   if (value == null || value.isEmpty) {
+          //     return 'Please enter your password';
+          //   }
+          //   if (value.length < 6) {
+          //     return 'Password must be at least 6 characters';
+          //   }
+          //   return null;
+          // },
         ),
       ],
     ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.3);
@@ -389,11 +389,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _handleLogin() {
-    if (_formKey.currentState!.validate()) {
-      _authController.signInWithEmailAndPassword(
-        _emailController.text.trim(),
-        _passwordController.text.trim(),
-      );
-    }
+    // No validation needed for demo - just sign in with dummy data
+    _authController.signInWithEmailAndPassword(
+      _emailController.text.trim().isEmpty ? 'demo@propertypulse.com' : _emailController.text.trim(),
+      _passwordController.text.trim().isEmpty ? 'demo123' : _passwordController.text.trim(),
+    );
   }
 }
