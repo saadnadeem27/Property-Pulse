@@ -44,6 +44,43 @@ class AppColors {
     end: Alignment.bottomRight,
   );
 
+  // Beautiful App Gradients
+  static const LinearGradient backgroundGradient = LinearGradient(
+    colors: [Color(0xFFF8FAFC), Color(0xFFE2E8F0)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static const LinearGradient cardGradient = LinearGradient(
+    colors: [Color(0xFFFFFFFF), Color(0xFFF8FAFC)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient buttonGradient = LinearGradient(
+    colors: [Color(0xFF2B5CE6), Color(0xFF1E3A8A)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient propertyCardGradient = LinearGradient(
+    colors: [Color(0xFFFFFFFF), Color(0xFFF1F5F9)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static const LinearGradient searchGradient = LinearGradient(
+    colors: [Color(0xFF10B981), Color(0xFF059669)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient homeHeaderGradient = LinearGradient(
+    colors: [Color(0xFF2B5CE6), Color(0xFF5A7CED), Color(0xFF10B981)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
   // Shadow Colors
   static const Color shadowLight = Color(0x0A000000);
   static const Color shadowMedium = Color(0x14000000);

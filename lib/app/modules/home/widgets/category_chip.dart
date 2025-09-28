@@ -26,26 +26,30 @@ class _CategoryChipState extends State<CategoryChip> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: widget.category.isSelected ? AppColors.primary : Colors.white,
+          gradient: widget.category.isSelected 
+              ? AppColors.primaryGradient
+              : AppColors.cardGradient,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: widget.category.isSelected
-                ? AppColors.primary
-                : AppColors.border,
+                ? Colors.transparent
+                : AppColors.border.withOpacity(0.3),
+            width: widget.category.isSelected ? 0 : 1,
           ),
           boxShadow: widget.category.isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.2),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+                    color: AppColors.primary.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                    spreadRadius: 0,
                   ),
                 ]
               : [
                   BoxShadow(
-                    color: AppColors.shadowLight,
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
                   ),
                 ],
         ),

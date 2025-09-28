@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     final LocationController locationController = Get.find();
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {
@@ -59,6 +59,13 @@ class HomeScreen extends StatelessWidget {
       AuthController authController, LocationController locationController) {
     return SliverToBoxAdapter(
       child: Container(
+        decoration: const BoxDecoration(
+          gradient: AppColors.homeHeaderGradient,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
@@ -74,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                         'Good Morning',
                         style: TextStyle(
                           fontSize: 14,
-                          color: AppColors.textSecondary,
+                          color: Colors.white.withOpacity(0.8),
                         ),
                       ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.3),
                       const SizedBox(height: 4),
@@ -84,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColors.textPrimary,
+                                  color: Colors.white,
                                 ),
                               ))
                           .animate()
@@ -97,11 +104,15 @@ class HomeScreen extends StatelessWidget {
                 // Notification Button
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                      width: 1,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.shadowLight,
+                        color: Colors.black.withOpacity(0.1),
                         blurRadius: 10,
                         offset: const Offset(0, 2),
                       ),
@@ -113,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.notifications_outlined,
-                      color: AppColors.textPrimary,
+                      color: Colors.white,
                     ),
                   ),
                 ).animate().fadeIn(delay: 300.ms).scale(delay: 300.ms),
@@ -173,13 +184,18 @@ class HomeScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: AppColors.cardGradient,
               borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: AppColors.primary.withOpacity(0.1),
+                width: 1,
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.shadowLight,
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
+                  color: AppColors.primary.withOpacity(0.1),
+                  blurRadius: 15,
+                  offset: const Offset(0, 4),
+                  spreadRadius: 0,
                 ),
               ],
             ),
@@ -202,8 +218,15 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    gradient: AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withOpacity(0.3),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
                   child: const Icon(
                     Icons.tune,
@@ -283,7 +306,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ).animate().fadeIn(delay: 800.ms).slideX(begin: -0.3),
           SizedBox(
-            height: 280,
+            height: 300,
             child: Obx(() {
               final featuredProperties = propertyController.featuredProperties;
               if (featuredProperties.isEmpty) {

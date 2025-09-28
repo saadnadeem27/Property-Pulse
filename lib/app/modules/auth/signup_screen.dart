@@ -453,9 +453,15 @@ class _SignupScreenState extends State<SignupScreen> {
   void _handleSignUp() {
     // No validation needed for demo - just sign up with dummy data
     _authController.signUpWithEmailAndPassword(
-      _emailController.text.trim().isEmpty ? 'newuser@propertypulse.com' : _emailController.text.trim(),
-      _passwordController.text.trim().isEmpty ? 'demo123' : _passwordController.text.trim(),
-      _nameController.text.trim().isEmpty ? 'Demo User' : _nameController.text.trim(),
+      _emailController.text.trim().isEmpty
+          ? 'newuser@propertypulse.com'
+          : _emailController.text.trim(),
+      _passwordController.text.trim().isEmpty
+          ? 'demo123'
+          : _passwordController.text.trim(),
+      _nameController.text.trim().isEmpty
+          ? 'Demo User'
+          : _nameController.text.trim(),
     );
   }
 }

@@ -44,20 +44,20 @@ class AuthController extends GetxController {
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
       _isLoading.value = true;
-      
+
       // Simulate loading delay
       await Future.delayed(const Duration(seconds: 1));
-      
+
       // Create dummy user
       _user.value = DummyUser(
         uid: 'dummy_user_123',
         email: email.isEmpty ? 'demo@propertypulse.com' : email,
         displayName: 'Demo User',
       );
-      
+
       await _saveUserSession();
       Get.snackbar('Success', 'Welcome to Property Pulse!');
-      
+
       // Navigate to main dashboard
       Get.offAllNamed('/main');
     } catch (e) {
@@ -72,20 +72,20 @@ class AuthController extends GetxController {
       String email, String password, String name) async {
     try {
       _isLoading.value = true;
-      
+
       // Simulate loading delay
       await Future.delayed(const Duration(seconds: 1));
-      
+
       // Create dummy user
       _user.value = DummyUser(
         uid: 'dummy_user_123',
         email: email.isEmpty ? 'demo@propertypulse.com' : email,
         displayName: name.isEmpty ? 'Demo User' : name,
       );
-      
+
       await _saveUserSession();
       Get.snackbar('Success', 'Account created successfully!');
-      
+
       // Navigate to main dashboard
       Get.offAllNamed('/main');
     } catch (e) {
@@ -99,17 +99,17 @@ class AuthController extends GetxController {
   Future<void> signInWithGoogle() async {
     try {
       _isLoading.value = true;
-      
+
       // Simulate loading delay
       await Future.delayed(const Duration(seconds: 1));
-      
+
       // Create dummy Google user
       _user.value = DummyUser(
         uid: 'dummy_google_user_123',
         email: 'demo.google@propertypulse.com',
         displayName: 'Google Demo User',
       );
-      
+
       await _saveUserSession();
       Get.snackbar('Success', 'Signed in with Google!');
     } catch (e) {
@@ -137,10 +137,10 @@ class AuthController extends GetxController {
   Future<void> resetPassword(String email) async {
     try {
       _isLoading.value = true;
-      
+
       // Simulate delay
       await Future.delayed(const Duration(seconds: 1));
-      
+
       Get.snackbar('Success', 'Password reset email sent (Demo)');
     } catch (e) {
       Get.snackbar('Error', 'Something went wrong');

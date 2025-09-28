@@ -23,12 +23,22 @@ class PropertyCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          gradient: AppColors.propertyCardGradient,
           borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: AppColors.border.withOpacity(0.5),
+            width: 0.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.shadowLight,
-              blurRadius: 10,
+              color: AppColors.primary.withOpacity(0.08),
+              blurRadius: 15,
+              offset: const Offset(0, 5),
+              spreadRadius: 0,
+            ),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 5,
               offset: const Offset(0, 2),
             ),
           ],
@@ -208,17 +218,18 @@ class PropertyCard extends StatelessWidget {
 
           // Property Details
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildDetailChip(
                 Icons.bed_outlined,
                 '${property.details.bedrooms} beds',
               ),
-              const SizedBox(width: 8),
+              // const SizedBox(width: 5),
               _buildDetailChip(
                 Icons.bathtub_outlined,
                 '${property.details.bathrooms} baths',
               ),
-              const SizedBox(width: 8),
+              // const SizedBox(width: 5),
               _buildDetailChip(
                 Icons.square_foot,
                 '${property.details.area.toInt()} ${property.details.areaUnit}',

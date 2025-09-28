@@ -57,15 +57,19 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        children: _screens,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: AppColors.backgroundGradient,
+        ),
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          children: _screens,
+        ),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
@@ -74,14 +78,25 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget _buildBottomNavigationBar() {
     return Container(
       height: 90,
-      padding: const EdgeInsets.only(top: 5, bottom: 12),
+      padding: const EdgeInsets.only(top: 8, bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        gradient: const LinearGradient(
+          colors: [Color(0xFFFFFFFF), Color(0xFFF8FAFC)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        border: Border(
+          top: BorderSide(
+            color: AppColors.border.withOpacity(0.3),
+            width: 1,
+          ),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 25,
+            offset: const Offset(0, -8),
+            spreadRadius: 0,
           ),
         ],
       ),
@@ -95,13 +110,23 @@ class _MainNavigationState extends State<MainNavigation> {
           return GestureDetector(
             onTap: () => _onTabTapped(index),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 300),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: isActive
-                    ? AppColors.primary.withOpacity(0.1)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
+                gradient: isActive
+                    ? AppColors.primaryGradient
+                    : AppColors.backgroundGradient,
+                color: isActive ? null : Colors.transparent,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: isActive
+                    ? [
+                        BoxShadow(
+                          color: AppColors.primary.withOpacity(0.3),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
+                    : null,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -111,21 +136,17 @@ class _MainNavigationState extends State<MainNavigation> {
                     child: Icon(
                       isActive ? item.activeIcon : item.icon,
                       key: ValueKey(isActive),
-                      color: isActive
-                          ? AppColors.primary
-                          : AppColors.textSecondary,
+                      color: isActive ? Colors.white : Colors.black54,
                       size: 24,
                     ),
-                  ).animate(target: isActive ? 1 : 0).scale(duration: 200.ms),
+                  ).animate(target: isActive ? 1 : 1).scale(duration: 200.ms),
                   const SizedBox(height: 4),
                   Text(
                     item.label,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
-                      color: isActive
-                          ? AppColors.primary
-                          : AppColors.textSecondary,
+                      color: isActive ? Colors.white : const Color(0xFF64748B),
                     ),
                   ),
                 ],

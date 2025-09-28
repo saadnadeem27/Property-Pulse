@@ -245,15 +245,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginButton() {
-    return Obx(() => SizedBox(
+    return Obx(() => Container(
           width: double.infinity,
           height: 56,
+          decoration: BoxDecoration(
+            gradient: AppColors.buttonGradient,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primary.withOpacity(0.4),
+                blurRadius: 15,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
           child: ElevatedButton(
             onPressed: _authController.isLoading ? null : _handleLogin,
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
+              backgroundColor: Colors.transparent,
               foregroundColor: Colors.white,
               elevation: 0,
+              shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -391,8 +403,12 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleLogin() {
     // No validation needed for demo - just sign in with dummy data
     _authController.signInWithEmailAndPassword(
-      _emailController.text.trim().isEmpty ? 'demo@propertypulse.com' : _emailController.text.trim(),
-      _passwordController.text.trim().isEmpty ? 'demo123' : _passwordController.text.trim(),
+      _emailController.text.trim().isEmpty
+          ? 'demo@propertypulse.com'
+          : _emailController.text.trim(),
+      _passwordController.text.trim().isEmpty
+          ? 'demo123'
+          : _passwordController.text.trim(),
     );
   }
 }
